@@ -29,7 +29,7 @@ func NewTokenRequest() {
 	}
 }
 
-func generateAccessToken(subject string) (string, error) {
+func GenerateAccessToken(subject string) (string, error) {
 	// prepare claims for token
 	tokenID, _ := uuid.NewUUID()
 	claims := JWTData{
@@ -51,7 +51,7 @@ func generateAccessToken(subject string) (string, error) {
 	return token, err
 }
 
-func validateToken(token string) bool {
+func ValidateToken(token string) bool {
 	claims := &JWTData{}
 
 	_, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
