@@ -67,15 +67,6 @@ func ValidateToken(token string) bool {
 		return false
 	}
 
-	now := time.Now()
-	tokenExp := claims.ExpiresAt.Time
-
-	if now.After(tokenExp) {
-		log.Printf("token expired %v after now %v", now, tokenExp)
-		return false
-	}
-
 	log.Printf("logitimate access for ID %v, Subject %v", claims.ID, claims.Subject)
-
 	return true
 }
