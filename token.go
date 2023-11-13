@@ -19,7 +19,8 @@ type JWTData struct {
 	jwt.RegisteredClaims
 }
 
-func NewTokenRequest() {
+// Init variable value
+func initToken() {
 	if os.Getenv("TOKEN_SIGN") != "" {
 		tokenSign = os.Getenv("TOKEN_SIGN")
 	}
@@ -30,7 +31,8 @@ func NewTokenRequest() {
 }
 
 func GenerateAccessToken(subject string) (string, error) {
-	// prepare claims for token
+	initToken()
+
 	tokenID, _ := uuid.NewUUID()
 	claims := JWTData{
 		RegisteredClaims: jwt.RegisteredClaims{
@@ -52,6 +54,8 @@ func GenerateAccessToken(subject string) (string, error) {
 }
 
 func ValidateToken(token string) bool {
+	initToken()
+
 	claims := &JWTData{}
 
 	_, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
