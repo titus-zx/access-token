@@ -63,7 +63,7 @@ func ValidateToken(token string) bool {
 	})
 
 	if err != nil {
-		log.Fatalf("token parse error %v", err)
+		log.Printf("token parse error %v", err)
 		return false
 	}
 
@@ -71,7 +71,7 @@ func ValidateToken(token string) bool {
 	tokenExp := claims.ExpiresAt.Time
 
 	if now.After(tokenExp) {
-		log.Fatalf("token expired %v after now %v", now, tokenExp)
+		log.Printf("token expired %v after now %v", now, tokenExp)
 		return false
 	}
 
