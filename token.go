@@ -11,8 +11,8 @@ import (
 )
 
 var (
-	tokenSign       = "titus.xapiens.id"
-	exp       int64 = 1
+	tokenSign     = "titus.xapiens.id"
+	exp       int = 1
 )
 
 type JWTData struct {
@@ -25,8 +25,7 @@ func initToken() {
 		tokenSign = os.Getenv("TOKEN_SIGN")
 	}
 	if os.Getenv("TOKEN_EXP") != "" {
-		expVar, _ := strconv.Atoi(os.Getenv("TOKEN_EXP"))
-		exp = int64(expVar)
+		exp, _ = strconv.Atoi(os.Getenv("TOKEN_EXP"))
 	}
 }
 
