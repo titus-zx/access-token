@@ -1,4 +1,4 @@
-module golang-jwt
+module github.com/titus-zx/access-token
 
 go 1.20
 
