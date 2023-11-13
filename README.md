@@ -31,3 +31,8 @@ func main() {
 }
 
 ```
+* Env Variaable
+```
+TOKEN_SIGN=yourtokensignedstring
+TOKEN_EXP=yourtokenexpiration (in hour)
+```
