@@ -15,6 +15,10 @@ var (
 	exp       int = 1
 )
 
+type TokenData struct {
+	Engine string
+}
+
 type JWTData struct {
 	jwt.RegisteredClaims
 }
@@ -68,4 +72,22 @@ func ValidateToken(token string) bool {
 
 	log.Printf("logitimate access for ID %v, Subject %v", claims.ID, claims.Subject)
 	return true
+}
+
+func ParseToken(token string) (*JWTData, error) {
+	initToken()
+
+	claims := &JWTData{}
+
+	_, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
+		return []byte(tokenSign), nil
+	})
+
+	if err != nil {
+		log.Printf("token parse error %v", err)
+		return nil, err
+	}
+
+	log.Printf("logitimate access for ID %v, Subject %v", claims.ID, claims.Subject)
+	return claims, err
 }
