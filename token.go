@@ -21,6 +21,7 @@ type TokenData struct {
 
 type JWTData struct {
 	jwt.RegisteredClaims
+	customClaims interface{}
 }
 
 // Init variable value
@@ -33,7 +34,7 @@ func initToken() {
 	}
 }
 
-func GenerateAccessToken(subject string) (string, error) {
+func GenerateAccessToken(subject string, customClaims interface{}) (string, error) {
 	initToken()
 
 	tokenID, _ := uuid.NewUUID()
@@ -45,6 +46,7 @@ func GenerateAccessToken(subject string) (string, error) {
 			Subject:   subject,
 			ID:        tokenID.String(),
 		},
+		customClaims: customClaims,
 	}
 
 	// generate a string using claims and HS256 algorithm
