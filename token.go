@@ -21,7 +21,7 @@ type TokenData struct {
 
 type JWTData struct {
 	jwt.RegisteredClaims
-	customClaims interface{}
+	customClaims interface{} `json:"custom-claims"`
 }
 
 // Init variable value
