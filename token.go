@@ -21,7 +21,7 @@ type TokenData struct {
 
 type JWTData struct {
 	jwt.RegisteredClaims
-	customClaims interface{} `json:"custom-claims"`
+	CustomClaims interface{} `json:"custom-claims"`
 }
 
 // Init variable value
@@ -46,7 +46,7 @@ func GenerateAccessToken(subject string, customClaims interface{}) (string, erro
 			Subject:   subject,
 			ID:        tokenID.String(),
 		},
-		customClaims: customClaims,
+		CustomClaims: customClaims,
 	}
 
 	// generate a string using claims and HS256 algorithm
